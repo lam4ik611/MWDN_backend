@@ -20,12 +20,16 @@ export class ImagesService {
   }
 
   async findAll(): Promise<Array<IImage>> {
-    const res = await Promise.all([
-      this.getDataHandler(this.apiImages),
-      this.getDataHandler(this.apiPhotos),
-    ]);
+    try {
+      const res = await Promise.all([
+        this.getDataHandler(this.apiImages),
+        this.getDataHandler(this.apiPhotos),
+      ]);
 
-    return transformImage(res.flat(1));
+      return transformImage(res.flat(1));
+    } catch (err) {
+      throw new Error(`Error: ${err.message}`);
+    }
   }
 
   private async getDataHandler(url: string) {

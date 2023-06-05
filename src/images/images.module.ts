@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { ImagesController } from './images.controller';
-import { HttpModule } from '@nestjs/axios';
+import { HttpModule, HttpService } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { imagesConfig } from 'src/images/config/images.config';
 
@@ -13,6 +13,6 @@ import { imagesConfig } from 'src/images/config/images.config';
     HttpModule,
   ],
   controllers: [ImagesController],
-  providers: [ImagesService],
+  providers: [ImagesService, HttpService],
 })
 export class ImagesModule {}
