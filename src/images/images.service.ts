@@ -33,7 +33,7 @@ export class ImagesService {
       await firstValueFrom(
         this.httpService.get(url).pipe(
           catchError((error: AxiosError) => {
-            throw `An error happened: ${error}`;
+            throw `An error happened: ${error.message}`;
           }),
         ),
       )
